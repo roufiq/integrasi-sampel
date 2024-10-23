@@ -1,4 +1,5 @@
 import '/backend/supabase/supabase.dart';
+import '/components/mitra_detail_component_widget.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -54,8 +55,13 @@ class _DataTableHistoryMitraWidgetState
           builder: (context) {
             final historyMitra = widget.historyList!.toList();
             if (historyMitra.isEmpty) {
-              return Image.asset(
-                'assets/images/Error_Animation_-_1727763541893.gif',
+              return Center(
+                child: Image.asset(
+                  'assets/images/Strip_User_Empty_Block.gif',
+                  width: 300.0,
+                  height: 300.0,
+                  fit: BoxFit.scaleDown,
+                ),
               );
             }
 
@@ -70,6 +76,7 @@ class _DataTableHistoryMitraWidgetState
                       'Nama Lengkap',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
+                            fontSize: 13.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
                           ),
@@ -83,6 +90,7 @@ class _DataTableHistoryMitraWidgetState
                       'Status Penugasan',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
+                            fontSize: 13.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
                           ),
@@ -96,6 +104,7 @@ class _DataTableHistoryMitraWidgetState
                       'Kegiatan',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
+                            fontSize: 13.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
                           ),
@@ -140,15 +149,72 @@ class _DataTableHistoryMitraWidgetState
                       : FlutterFlowTheme.of(context).primaryBackground,
                 ),
                 cells: [
-                  Text(
-                    valueOrDefault<String>(
-                      historyMitraItem.namaLengkap,
-                      'nama_lengkap',
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Inter',
-                          letterSpacing: 0.0,
+                  Builder(
+                    builder: (context) => InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        _model.mitra = await Mitra1371Table().queryRows(
+                          queryFn: (q) => q.eq(
+                            'idmitra',
+                            historyMitraItem.idmitra,
+                          ),
+                        );
+                        _model.history = await History1371ViewTable().queryRows(
+                          queryFn: (q) => q.eq(
+                            'idmitra',
+                            historyMitraItem.idmitra,
+                          ),
+                        );
+                        await showDialog(
+                          barrierColor: const Color(0xA4242121),
+                          context: context,
+                          builder: (dialogContext) {
+                            return Dialog(
+                              elevation: 0,
+                              insetPadding: EdgeInsets.zero,
+                              backgroundColor: Colors.transparent,
+                              alignment: const AlignmentDirectional(0.0, 0.0)
+                                  .resolve(Directionality.of(context)),
+                              child: MitraDetailComponentWidget(
+                                mitraDetail: _model.mitra!.first,
+                                historyDetailId: _model.history!,
+                              ),
+                            );
+                          },
+                        );
+
+                        safeSetState(() {});
+                      },
+                      child: RichText(
+                        textScaler: MediaQuery.of(context).textScaler,
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: valueOrDefault<String>(
+                                historyMitraItem.namaLengkap,
+                                '-',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            )
+                          ],
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Inter',
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
+                      ),
+                    ),
                   ),
                   Text(
                     valueOrDefault<String>(
@@ -157,6 +223,7 @@ class _DataTableHistoryMitraWidgetState
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Inter',
+                          fontSize: 12.0,
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -167,6 +234,7 @@ class _DataTableHistoryMitraWidgetState
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Inter',
+                          fontSize: 12.0,
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -255,8 +323,13 @@ class _DataTableHistoryMitraWidgetState
                   ),
                 ].map((c) => DataCell(c)).toList(),
               ),
-              emptyBuilder: () => Image.asset(
-                'assets/images/Error_Animation_-_1727763541893.gif',
+              emptyBuilder: () => Center(
+                child: Image.asset(
+                  'assets/images/Strip_User_Empty_Block.gif',
+                  width: 300.0,
+                  height: 300.0,
+                  fit: BoxFit.scaleDown,
+                ),
               ),
               paginated: true,
               selectable: false,

@@ -88,4 +88,13 @@ class HistoryMitra1371Row extends SupabaseDataRow {
 
   String? get ratedComment => getField<String>('rated_comment');
   set ratedComment(String? value) => setField<String>('rated_comment', value);
+
+  int? get volume => getField<int>('volume');
+  set volume(int? value) => setField<int>('volume', value);
+
+  double? get rate => getField<double>('rate');
+  set rate(double? value) => setField<double>('rate', value);
+
+  double? get upah => getField<double>('upah');
+  set upah(double? value) => setField<double>('upah', value);
 }

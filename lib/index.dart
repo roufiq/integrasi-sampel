@@ -7,3 +7,5 @@ export '/auth/create_account_page/create_account_page_widget.dart'
 export '/pages/profile_page/profile_page_widget.dart' show ProfilePageWidget;
 export '/pages/history_mitra_page/history_mitra_page_widget.dart'
     show HistoryMitraPageWidget;
+export '/pages/input_sampel_page/input_sampel_page_widget.dart'
+    show InputSampelPageWidget;

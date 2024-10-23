@@ -20,11 +20,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  late AnimationController lottieAnimationController;
+
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => LoginPageModel());
 
+    lottieAnimationController = AnimationController(vsync: this);
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
@@ -43,7 +46,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
 
   @override
   Widget build(BuildContext context) {
-    final lottieAnimationController = AnimationController(vsync: this);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(

@@ -113,7 +113,7 @@ class _HistoryMitraPageWidgetState extends State<HistoryMitraPageWidget> {
                                   Container(
                                     width: double.infinity,
                                     constraints: const BoxConstraints(
-                                      maxWidth: 300.0,
+                                      minWidth: 300.0,
                                     ),
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
@@ -580,7 +580,7 @@ class _HistoryMitraPageWidgetState extends State<HistoryMitraPageWidget> {
                                   Container(
                                     width: double.infinity,
                                     constraints: const BoxConstraints(
-                                      maxWidth: 700.0,
+                                      minWidth: 700.0,
                                       maxHeight: double.infinity,
                                     ),
                                     decoration: BoxDecoration(

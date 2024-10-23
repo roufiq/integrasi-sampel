@@ -111,7 +111,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'HistoryMitraPage',
           path: '/historyMitra',
+          requireAuth: true,
           builder: (context, params) => const HistoryMitraPageWidget(),
+        ),
+        FFRoute(
+          name: 'InputSampelPage',
+          path: '/inputSampel',
+          requireAuth: true,
+          builder: (context, params) => const InputSampelPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -299,8 +306,8 @@ class FFRoute {
                   child: Center(
                     child: Image.asset(
                       'assets/images/Splash_screen.gif',
-                      width: 150.0,
-                      height: 150.0,
+                      width: 300.0,
+                      height: 300.0,
                       fit: BoxFit.scaleDown,
                     ),
                   ),
