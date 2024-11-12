@@ -1,5 +1,5 @@
 import '/backend/supabase/supabase.dart';
-import '/components/data_table_history_mitra_widget.dart';
+import '/components/data_table_history_mitra/data_table_history_mitra_widget.dart';
 import '/components/navigation_menu/navigation_menu_widget.dart';
 import '/components/side_navigation_web/side_navigation_web_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';

@@ -1,5 +1,5 @@
 import '/backend/supabase/supabase.dart';
-import '/components/data_table_history_mitra_widget.dart';
+import '/components/data_table_history_mitra/data_table_history_mitra_widget.dart';
 import '/components/navigation_menu/navigation_menu_widget.dart';
 import '/components/side_navigation_web/side_navigation_web_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -577,70 +577,49 @@ class _HistoryMitraPageWidgetState extends State<HistoryMitraPageWidget> {
                                       ],
                                     ),
                                   ),
-                                  Container(
-                                    width: double.infinity,
-                                    constraints: const BoxConstraints(
-                                      minWidth: 700.0,
-                                      maxHeight: double.infinity,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 0.0),
-                                      child: Builder(
-                                        builder: (context) {
-                                          if ((_model.surveiDropdownValue !=
-                                                      null &&
-                                                  _model.surveiDropdownValue !=
-                                                      '') &&
-                                              (_model.kegDropdownValue !=
-                                                      null &&
-                                                  _model.kegDropdownValue !=
-                                                      '') &&
-                                              (_model.posisiDropdownValue !=
-                                                      null &&
-                                                  _model.posisiDropdownValue !=
-                                                      '')) {
-                                            return wrapWithModel(
-                                              model: _model
-                                                  .dataTableHistoryMitraModel,
-                                              updateCallback: () =>
-                                                  safeSetState(() {}),
-                                              updateOnChange: true,
-                                              child:
-                                                  DataTableHistoryMitraWidget(
-                                                historyList:
-                                                    _model.historyMitraList,
-                                              ),
-                                            );
-                                          } else {
-                                            return Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, -1.0),
-                                                  child: Text(
-                                                    'Pilih Survei - Kegiatan - dan Posisi terlebih dahulu',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
+                                  Builder(
+                                    builder: (context) {
+                                      if ((_model.surveiDropdownValue != null &&
+                                              _model.surveiDropdownValue !=
+                                                  '') &&
+                                          (_model.kegDropdownValue != null &&
+                                              _model.kegDropdownValue != '') &&
+                                          (_model.posisiDropdownValue != null &&
+                                              _model.posisiDropdownValue !=
+                                                  '')) {
+                                        return wrapWithModel(
+                                          model:
+                                              _model.dataTableHistoryMitraModel,
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
+                                          updateOnChange: true,
+                                          child: DataTableHistoryMitraWidget(
+                                            historyList:
+                                                _model.historyMitraList,
+                                          ),
+                                        );
+                                      } else {
+                                        return Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, -1.0),
+                                              child: Text(
+                                                'Pilih Survei - Kegiatan - dan Posisi terlebih dahulu',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
                                                           letterSpacing: 0.0,
                                                         ),
-                                                  ),
-                                                ),
-                                              ],
-                                            );
-                                          }
-                                        },
-                                      ),
-                                    ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      }
+                                    },
                                   ),
                                 ],
                               ),

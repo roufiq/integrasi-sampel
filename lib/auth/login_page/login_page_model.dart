@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'login_page_widget.dart' show LoginPageWidget;
 import 'package:flutter/material.dart';
@@ -34,6 +35,9 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
     return null;
   }
+
+  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
+  List<Profile1371Row>? profileRow;
 
   @override
   void initState(BuildContext context) {

@@ -10,6 +10,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 import 'profile_page_model.dart';
 export 'profile_page_model.dart';
 
@@ -34,6 +35,19 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
     _model = createModel(context, () => ProfilePageModel());
 
     animationsMap.addAll({
+      'rowOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          VisibilityEffect(duration: 200.ms),
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 200.0.ms,
+            duration: 400.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
       'containerOnActionTriggerAnimation': AnimationInfo(
         trigger: AnimationTrigger.onActionTrigger,
         applyInitialState: true,
@@ -67,6 +81,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<List<Pegawai1371Row>>(
       future: Pegawai1371Table().querySingleRow(
         queryFn: (q) => q.eq(
@@ -308,6 +324,249 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                 ],
                                               ),
                                             ),
+                                            SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 8.0),
+                                                    child: Container(
+                                                      height: 32.0,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .success,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Visibility(
+                                                        visible: FFAppState()
+                                                                .isKepalaRole ==
+                                                            true,
+                                                        child: Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        0.0,
+                                                                        8.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              'Kepala',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Plus Jakarta Sans',
+                                                                    color: const Color(
+                                                                        0xFF15161E),
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 8.0),
+                                                    child: Container(
+                                                      height: 32.0,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .warning,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Visibility(
+                                                        visible: FFAppState()
+                                                                .isKetuaTimRole ==
+                                                            true,
+                                                        child: Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        0.0,
+                                                                        8.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              'Ketua Tim',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Plus Jakarta Sans',
+                                                                    color: const Color(
+                                                                        0xFF15161E),
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  if (FFAppState()
+                                                          .isAnggotaRole ==
+                                                      true)
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  8.0),
+                                                      child: Container(
+                                                        height: 32.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        child: Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        0.0,
+                                                                        8.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              'Anggota',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Plus Jakarta Sans',
+                                                                    color: const Color(
+                                                                        0xFF15161E),
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  if (FFAppState()
+                                                          .isAdminRole ==
+                                                      true)
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  8.0),
+                                                      child: Container(
+                                                        height: 32.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .error,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        child: Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        0.0,
+                                                                        8.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              'Admin',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Plus Jakarta Sans',
+                                                                    color: const Color(
+                                                                        0xFF15161E),
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                ]
+                                                    .divide(
+                                                        const SizedBox(width: 8.0))
+                                                    .addToStart(
+                                                        const SizedBox(width: 16.0))
+                                                    .addToEnd(
+                                                        const SizedBox(width: 16.0)),
+                                              ),
+                                            ).animateOnPageLoad(animationsMap[
+                                                'rowOnPageLoadAnimation']!),
                                             Divider(
                                               height: 2.0,
                                               thickness: 1.0,

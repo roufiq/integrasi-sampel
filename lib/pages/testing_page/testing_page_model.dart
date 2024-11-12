@@ -1,21 +1,21 @@
 import '/components/navigation_menu/navigation_menu_widget.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'home_page_widget.dart' show HomePageWidget;
+import 'testing_page_widget.dart' show TestingPageWidget;
 import 'package:flutter/material.dart';
 
-class HomePageModel extends FlutterFlowModel<HomePageWidget> {
+class TestingPageModel extends FlutterFlowModel<TestingPageWidget> {
   ///  Local state fields for this page.
 
-  List<dynamic> stateSampleList = [];
-  void addToStateSampleList(dynamic item) => stateSampleList.add(item);
-  void removeFromStateSampleList(dynamic item) => stateSampleList.remove(item);
-  void removeAtIndexFromStateSampleList(int index) =>
-      stateSampleList.removeAt(index);
-  void insertAtIndexInStateSampleList(int index, dynamic item) =>
-      stateSampleList.insert(index, item);
-  void updateStateSampleListAtIndex(int index, Function(dynamic) updateFn) =>
-      stateSampleList[index] = updateFn(stateSampleList[index]);
+  List<dynamic> statePageList = [];
+  void addToStatePageList(dynamic item) => statePageList.add(item);
+  void removeFromStatePageList(dynamic item) => statePageList.remove(item);
+  void removeAtIndexFromStatePageList(int index) =>
+      statePageList.removeAt(index);
+  void insertAtIndexInStatePageList(int index, dynamic item) =>
+      statePageList.insert(index, item);
+  void updateStatePageListAtIndex(int index, Function(dynamic) updateFn) =>
+      statePageList[index] = updateFn(statePageList[index]);
 
   ///  State fields for stateful widgets in this page.
 
@@ -25,8 +25,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   FocusNode? textSearchFocusNode;
   TextEditingController? textSearchTextController;
   String? Function(BuildContext, String?)? textSearchTextControllerValidator;
-  // Stores action output result for [Custom Action - searchTable] action in Button widget.
-  List<dynamic>? sampleList;
+  // Stores action output result for [Custom Action - loadData] action in Button widget.
+  List<dynamic>? pageList;
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
       FlutterFlowDataTableController<dynamic>();

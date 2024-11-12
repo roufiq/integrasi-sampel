@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '/backend/schema/structs/index.dart';
+
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -71,16 +73,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? const HistoryMitraPageWidget()
-          : const LoginPageWidget(),
+      errorBuilder: (context, state) => RootPageContext.wrap(
+        appStateNotifier.loggedIn ? const ProfilePageWidget() : const LoginPageWidget(),
+        errorRoute: state.uri.toString(),
+      ),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? const HistoryMitraPageWidget()
-              : const LoginPageWidget(),
+          builder: (context, _) => RootPageContext.wrap(
+            appStateNotifier.loggedIn ? const ProfilePageWidget() : const LoginPageWidget(),
+          ),
         ),
         FFRoute(
           name: 'HomePage',
@@ -118,7 +121,30 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'InputSampelPage',
           path: '/inputSampel',
           requireAuth: true,
-          builder: (context, params) => const InputSampelPageWidget(),
+          builder: (context, params) => InputSampelPageWidget(
+            dataResults: params.getParam<dynamic>(
+              'dataResults',
+              ParamType.JSON,
+              isList: true,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'RiwayatSampelPage',
+          path: '/riwayatSampelPage',
+          builder: (context, params) => const RiwayatSampelPageWidget(),
+        ),
+        FFRoute(
+          name: 'TestingPage',
+          path: '/testing',
+          requireAuth: true,
+          builder: (context, params) => const TestingPageWidget(),
+        ),
+        FFRoute(
+          name: 'AssignUnitSampelPage',
+          path: '/assignUnitSampel',
+          requireAuth: true,
+          builder: (context, params) => const AssignUnitSampelPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -237,6 +263,7 @@ class FFParameters {
     String paramName,
     ParamType type, {
     bool isList = false,
+    StructBuilder<T>? structBuilder,
   }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -254,6 +281,7 @@ class FFParameters {
       param,
       type,
       isList,
+      structBuilder: structBuilder,
     );
   }
 }

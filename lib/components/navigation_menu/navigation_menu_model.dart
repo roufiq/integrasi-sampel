@@ -10,28 +10,28 @@ class NavigationMenuModel extends FlutterFlowModel<NavigationMenuWidget> {
 
   ///  State fields for stateful widgets in this component.
 
-  // Model for KetuaTim.
-  late NavigationOptionsModel ketuaTimModel;
-  // Model for Bendahara.
-  late NavigationOptionsModel bendaharaModel;
-  // Model for Kepala.
-  late NavigationOptionsModel kepalaModel;
-  // Model for Anggota.
-  late NavigationOptionsModel anggotaModel;
+  // Model for HistorySampel.
+  late NavigationOptionsModel historySampelModel;
+  // Model for AlokasiSampel.
+  late NavigationOptionsModel alokasiSampelModel;
+  // Model for MonitoringHonor.
+  late NavigationOptionsModel monitoringHonorModel;
+  // Model for HistoryMitra.
+  late NavigationOptionsModel historyMitraModel;
 
   @override
   void initState(BuildContext context) {
-    ketuaTimModel = createModel(context, () => NavigationOptionsModel());
-    bendaharaModel = createModel(context, () => NavigationOptionsModel());
-    kepalaModel = createModel(context, () => NavigationOptionsModel());
-    anggotaModel = createModel(context, () => NavigationOptionsModel());
+    historySampelModel = createModel(context, () => NavigationOptionsModel());
+    alokasiSampelModel = createModel(context, () => NavigationOptionsModel());
+    monitoringHonorModel = createModel(context, () => NavigationOptionsModel());
+    historyMitraModel = createModel(context, () => NavigationOptionsModel());
   }
 
   @override
   void dispose() {
-    ketuaTimModel.dispose();
-    bendaharaModel.dispose();
-    kepalaModel.dispose();
-    anggotaModel.dispose();
+    historySampelModel.dispose();
+    alokasiSampelModel.dispose();
+    monitoringHonorModel.dispose();
+    historyMitraModel.dispose();
   }
 }

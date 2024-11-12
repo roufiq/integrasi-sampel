@@ -255,50 +255,51 @@ class _NavigationMenuWidgetState extends State<NavigationMenuWidget>
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     wrapWithModel(
-                      model: _model.ketuaTimModel,
+                      model: _model.historySampelModel,
                       updateCallback: () => safeSetState(() {}),
                       child: NavigationOptionsWidget(
-                        title: 'Menu Ketua Tim',
-                        description: 'Khusus Untuk Ketua Tim',
+                        title: 'History Sampel Perusahaan',
+                        description: 'Informasi Perusahaan dan Riwayat Sampel',
                         icon: const Icon(
-                          Icons.filter_1,
+                          Icons.business_rounded,
                         ),
                         onTapAction: () async {},
                       ),
                     ),
                     if (false)
                       wrapWithModel(
-                        model: _model.bendaharaModel,
+                        model: _model.alokasiSampelModel,
                         updateCallback: () => safeSetState(() {}),
                         child: NavigationOptionsWidget(
-                          title: 'Menu Bendahara',
-                          description: 'Khusus Untuk Bendahara',
+                          title: 'Alokasi Sampel',
+                          description: 'Sampel Terpilih Kegiatan Survey',
                           icon: const Icon(
-                            Icons.filter_2,
+                            Icons.swipe,
                           ),
                           onTapAction: () async {},
                         ),
                       ),
                     wrapWithModel(
-                      model: _model.kepalaModel,
+                      model: _model.monitoringHonorModel,
                       updateCallback: () => safeSetState(() {}),
                       child: NavigationOptionsWidget(
-                        title: 'Menu Kepala',
-                        description: 'Khusus Untuk Kepala',
+                        title: 'Monitoring SBML',
+                        description:
+                            'Memeriksa perkiraan honor mitra sesuai SBML',
                         icon: const Icon(
-                          Icons.filter_3,
+                          Icons.receipt_long,
                         ),
                         onTapAction: () async {},
                       ),
                     ),
                     wrapWithModel(
-                      model: _model.anggotaModel,
+                      model: _model.historyMitraModel,
                       updateCallback: () => safeSetState(() {}),
                       child: NavigationOptionsWidget(
-                        title: 'Menu Anggota',
-                        description: 'Khusus Anggota',
+                        title: 'History Kegiatan Mitra',
+                        description: 'Berisi daftar kegiatan Mitra',
                         icon: const Icon(
-                          Icons.filter_4,
+                          Icons.manage_history_outlined,
                         ),
                         onTapAction: () async {
                           context.pushNamed('HistoryMitraPage');

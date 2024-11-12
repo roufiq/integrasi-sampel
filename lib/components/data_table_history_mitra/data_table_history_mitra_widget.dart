@@ -1,5 +1,5 @@
 import '/backend/supabase/supabase.dart';
-import '/components/mitra_detail_component_widget.dart';
+import '/components/mitra_detail_modal/mitra_detail_modal_widget.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -49,7 +49,7 @@ class _DataTableHistoryMitraWidgetState
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Builder(
           builder: (context) {
@@ -178,9 +178,12 @@ class _DataTableHistoryMitraWidgetState
                               backgroundColor: Colors.transparent,
                               alignment: const AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: MitraDetailComponentWidget(
-                                mitraDetail: _model.mitra!.first,
-                                historyDetailId: _model.history!,
+                              child: SizedBox(
+                                width: MediaQuery.sizeOf(context).width * 0.8,
+                                child: MitraDetailModalWidget(
+                                  mitraDetail: _model.mitra!.first,
+                                  historyDetailId: _model.history!,
+                                ),
                               ),
                             );
                           },

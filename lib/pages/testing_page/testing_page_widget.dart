@@ -6,25 +6,25 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'home_page_model.dart';
-export 'home_page_model.dart';
+import 'testing_page_model.dart';
+export 'testing_page_model.dart';
 
-class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({super.key});
+class TestingPageWidget extends StatefulWidget {
+  const TestingPageWidget({super.key});
 
   @override
-  State<HomePageWidget> createState() => _HomePageWidgetState();
+  State<TestingPageWidget> createState() => _TestingPageWidgetState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget> {
-  late HomePageModel _model;
+class _TestingPageWidgetState extends State<TestingPageWidget> {
+  late TestingPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => HomePageModel());
+    _model = createModel(context, () => TestingPageModel());
 
     _model.textSearchTextController ??= TextEditingController();
     _model.textSearchFocusNode ??= FocusNode();
@@ -105,8 +105,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       fontFamily: 'Inter',
                                       letterSpacing: 0.0,
                                     ),
-                                hintText:
-                                    'Input ID SBR atau Nama Perusahaan...',
+                                hintText: 'TextField',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
@@ -161,17 +160,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         ),
                         FFButtonWidget(
                           onPressed: () async {
-                            _model.stateSampleList = [];
-                            _model.sampleList = await actions.searchTable(
-                              _model.textSearchTextController.text,
+                            _model.statePageList = [];
+                            _model.pageList = await actions.loadData(
+                              'survei',
+                              'kd_survei, nama, status, tipe',
                             );
-                            _model.stateSampleList =
-                                _model.sampleList!.toList().cast<dynamic>();
+                            _model.statePageList =
+                                _model.pageList!.toList().cast<dynamic>();
                             safeSetState(() {});
 
                             safeSetState(() {});
                           },
-                          text: 'Search',
+                          text: 'Button',
                           options: FFButtonOptions(
                             height: 40.0,
                             padding: const EdgeInsetsDirectional.fromSTEB(
@@ -196,7 +196,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   Expanded(
                     child: Builder(
                       builder: (context) {
-                        final dataTable = _model.stateSampleList.toList();
+                        final dataTable = _model.statePageList.toList();
 
                         return FlutterFlowDataTable<dynamic>(
                           controller: _model.paginatedDataTableController,
@@ -272,9 +272,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             cells: [
                               Text(
                                 valueOrDefault<String>(
-                                  SampelStruct.maybeFromMap(dataTableItem)
-                                      ?.idsbr
-                                      .toString(),
+                                  SurveiStruct.maybeFromMap(dataTableItem)
+                                      ?.kdSurvei,
                                   '-',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -286,8 +285,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                               Text(
                                 valueOrDefault<String>(
-                                  SampelStruct.maybeFromMap(dataTableItem)
-                                      ?.namaUsaha,
+                                  SurveiStruct.maybeFromMap(dataTableItem)
+                                      ?.nama,
                                   '-',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -299,8 +298,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                               Text(
                                 valueOrDefault<String>(
-                                  SampelStruct.maybeFromMap(dataTableItem)
-                                      ?.statusPerusahaan,
+                                  SurveiStruct.maybeFromMap(dataTableItem)
+                                      ?.tipe,
                                   '-',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -312,8 +311,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                               Text(
                                 valueOrDefault<String>(
-                                  SampelStruct.maybeFromMap(dataTableItem)
-                                      ?.kodeWilayah,
+                                  SurveiStruct.maybeFromMap(dataTableItem)
+                                      ?.status,
                                   '-',
                                 ),
                                 style: FlutterFlowTheme.of(context)

@@ -28,4 +28,8 @@ class SurveiRow extends SupabaseDataRow {
 
   String? get isBps => getField<String>('is_bps');
   set isBps(String? value) => setField<String>('is_bps', value);
+
+  bool? get isSampelPerusahaan => getField<bool>('is_sampel_perusahaan');
+  set isSampelPerusahaan(bool? value) =>
+      setField<bool>('is_sampel_perusahaan', value);
 }

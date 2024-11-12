@@ -78,26 +78,21 @@ class _NavigationOptionsWidgetState extends State<NavigationOptionsWidget> {
                   Flexible(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 2.0, 0.0, 2.0),
-                          child: Text(
-                            valueOrDefault<String>(
-                              widget.title,
-                              'Menu',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .titleMedium
-                                .override(
-                                  fontFamily: 'Inter',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  letterSpacing: 0.0,
-                                ),
+                        Text(
+                          valueOrDefault<String>(
+                            widget.title,
+                            'Menu',
                           ),
+                          style: FlutterFlowTheme.of(context)
+                              .titleMedium
+                              .override(
+                                fontFamily: 'Inter',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                letterSpacing: 0.0,
+                              ),
                         ),
                         Text(
                           valueOrDefault<String>(
@@ -110,7 +105,9 @@ class _NavigationOptionsWidgetState extends State<NavigationOptionsWidget> {
                                     letterSpacing: 0.0,
                                   ),
                         ),
-                      ].divide(const SizedBox(height: 12.0)),
+                      ]
+                          .divide(const SizedBox(height: 4.0))
+                          .around(const SizedBox(height: 4.0)),
                     ),
                   ),
                 ].divide(const SizedBox(width: 24.0)).around(const SizedBox(width: 24.0)),

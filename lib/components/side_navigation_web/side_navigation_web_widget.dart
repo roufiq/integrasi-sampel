@@ -2,6 +2,7 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -236,7 +237,7 @@ class _SideNavigationWebWidgetState extends State<SideNavigationWebWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
                       child: Text(
-                        'Platform Navigation',
+                        'Ketua Tim',
                         style: FlutterFlowTheme.of(context)
                             .labelMedium
                             .override(
@@ -269,30 +270,58 @@ class _SideNavigationWebWidgetState extends State<SideNavigationWebWidget> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
-                                Icons.space_dashboard,
+                                Icons.swipe,
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 size: 24.0,
                               ),
-                              if (!_model.isCollapsed)
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 0.0, 0.0),
+                              Expanded(
+                                child: AlignedTooltip(
+                                  content: Padding(
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Text(
-                                      'Menu Kepala',
+                                      'Sampel Terpilih Kegiatan Survey',
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                          .bodyLarge
                                           .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            fontSize: 14.0,
+                                            fontFamily: 'Inter',
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                   ),
+                                  offset: 4.0,
+                                  preferredDirection: AxisDirection.down,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  backgroundColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  elevation: 4.0,
+                                  tailBaseWidth: 24.0,
+                                  tailLength: 12.0,
+                                  waitDuration: const Duration(milliseconds: 100),
+                                  showDuration: const Duration(milliseconds: 1500),
+                                  triggerMode: TooltipTriggerMode.tap,
+                                  child: Visibility(
+                                    visible: !_model.isCollapsed,
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Alokasi Sampel',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Plus Jakarta Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
+                              ),
                             ],
                           ),
                         ),
@@ -319,30 +348,58 @@ class _SideNavigationWebWidgetState extends State<SideNavigationWebWidget> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
-                                Icons.forum_rounded,
+                                Icons.business_rounded,
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 size: 24.0,
                               ),
-                              if (!_model.isCollapsed)
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 0.0, 0.0),
+                              Expanded(
+                                child: AlignedTooltip(
+                                  content: Padding(
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Text(
-                                      'Menu Ketua Tim',
+                                      'Informasi Perusahaan dan Riwayat Sampel',
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                          .bodyLarge
                                           .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            fontSize: 14.0,
+                                            fontFamily: 'Inter',
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                   ),
+                                  offset: 4.0,
+                                  preferredDirection: AxisDirection.down,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  backgroundColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  elevation: 4.0,
+                                  tailBaseWidth: 24.0,
+                                  tailLength: 12.0,
+                                  waitDuration: const Duration(milliseconds: 100),
+                                  showDuration: const Duration(milliseconds: 1500),
+                                  triggerMode: TooltipTriggerMode.tap,
+                                  child: Visibility(
+                                    visible: !_model.isCollapsed,
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'History Sampel Perusahaan',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Plus Jakarta Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
+                              ),
                             ],
                           ),
                         ),
@@ -377,32 +434,60 @@ class _SideNavigationWebWidgetState extends State<SideNavigationWebWidget> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
-                                  Icons.work,
+                                  Icons.receipt_long,
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   size: 24.0,
                                 ),
-                                if (!_model.isCollapsed)
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 0.0, 0.0, 0.0),
+                                Expanded(
+                                  child: AlignedTooltip(
+                                    content: Padding(
+                                      padding: const EdgeInsets.all(4.0),
                                       child: Text(
-                                        'Manajemen Mitra',
+                                        'Memeriksa perkiraan honor mitra sesuai SBML',
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                            .bodyLarge
                                             .override(
-                                              fontFamily: 'Plus Jakarta Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontSize: 14.0,
+                                              fontFamily: 'Inter',
                                               letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
+                                    offset: 4.0,
+                                    preferredDirection: AxisDirection.down,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                    elevation: 4.0,
+                                    tailBaseWidth: 24.0,
+                                    tailLength: 12.0,
+                                    waitDuration: const Duration(milliseconds: 100),
+                                    showDuration: const Duration(milliseconds: 1500),
+                                    triggerMode: TooltipTriggerMode.tap,
+                                    child: Visibility(
+                                      visible: !_model.isCollapsed,
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            12.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Input Perkiraan Honor',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Plus Jakarta Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
                                   ),
+                                ),
                               ],
                             ),
                           ),
@@ -413,7 +498,7 @@ class _SideNavigationWebWidgetState extends State<SideNavigationWebWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                       child: Text(
-                        'Settings',
+                        'Anggota',
                         style: FlutterFlowTheme.of(context)
                             .labelMedium
                             .override(
@@ -446,49 +531,49 @@ class _SideNavigationWebWidgetState extends State<SideNavigationWebWidget> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
-                                Icons.notifications_rounded,
-                                color: FlutterFlowTheme.of(context).primary,
+                                Icons.manage_history_outlined,
+                                color: FlutterFlowTheme.of(context).primaryText,
                                 size: 24.0,
                               ),
-                              if (!_model.isCollapsed)
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 0.0, 0.0),
+                              Expanded(
+                                child: AlignedTooltip(
+                                  content: Padding(
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Text(
-                                      'Notifications',
+                                      'Berisi daftar kegiatan Mitra',
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                          .bodyLarge
                                           .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            fontSize: 14.0,
+                                            fontFamily: 'Inter',
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
                                           ),
                                     ),
                                   ),
-                                ),
-                              if (!_model.isCollapsed)
-                                Container(
-                                  height: 32.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                  offset: 4.0,
+                                  preferredDirection: AxisDirection.down,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  backgroundColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  elevation: 4.0,
+                                  tailBaseWidth: 24.0,
+                                  tailLength: 12.0,
+                                  waitDuration: const Duration(milliseconds: 100),
+                                  showDuration: const Duration(milliseconds: 1500),
+                                  triggerMode: TooltipTriggerMode.tap,
+                                  child: Visibility(
+                                    visible: !_model.isCollapsed,
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 4.0, 8.0, 4.0),
+                                          12.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        '12',
+                                        'History Kegiatan Mitra',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Plus Jakarta Sans',
-                                              color: Colors.white,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
@@ -497,6 +582,7 @@ class _SideNavigationWebWidgetState extends State<SideNavigationWebWidget> {
                                     ),
                                   ),
                                 ),
+                              ),
                             ],
                           ),
                         ),
@@ -505,99 +591,61 @@ class _SideNavigationWebWidgetState extends State<SideNavigationWebWidget> {
                     Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeInOut,
-                        width: double.infinity,
-                        height: 44.0,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          borderRadius: BorderRadius.circular(12.0),
-                          shape: BoxShape.rectangle,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.attach_money_rounded,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24.0,
-                              ),
-                              if (!_model.isCollapsed)
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Billing',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            fontSize: 14.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                            ],
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.goNamed('ProfilePage');
+                        },
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          curve: Curves.easeInOut,
+                          width: double.infinity,
+                          height: 44.0,
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            borderRadius: BorderRadius.circular(12.0),
+                            shape: BoxShape.rectangle,
                           ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeInOut,
-                        width: double.infinity,
-                        height: 44.0,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          borderRadius: BorderRadius.circular(12.0),
-                          shape: BoxShape.rectangle,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.wifi_tethering_rounded,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24.0,
-                              ),
-                              if (!_model.isCollapsed)
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Explore',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Plus Jakarta Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            fontSize: 14.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.person,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
+                                ),
+                                if (!_model.isCollapsed)
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Profile',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Plus Jakarta Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

@@ -1,11 +1,8 @@
-import '/backend/supabase/supabase.dart';
-import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'mitra_detail_component_widget.dart' show MitraDetailComponentWidget;
+import 'mitra_detail_modal_widget.dart' show MitraDetailModalWidget;
 import 'package:flutter/material.dart';
 
-class MitraDetailComponentModel
-    extends FlutterFlowModel<MitraDetailComponentWidget> {
+class MitraDetailModalModel extends FlutterFlowModel<MitraDetailModalWidget> {
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for TabBarDetail widget.
@@ -13,16 +10,11 @@ class MitraDetailComponentModel
   int get tabBarDetailCurrentIndex =>
       tabBarDetailController != null ? tabBarDetailController!.index : 0;
 
-  // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController =
-      FlutterFlowDataTableController<History1371ViewRow>();
-
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
     tabBarDetailController?.dispose();
-    paginatedDataTableController.dispose();
   }
 }

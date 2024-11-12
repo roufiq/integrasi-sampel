@@ -1,5 +1,5 @@
 import '/backend/supabase/supabase.dart';
-import '/components/data_table_history_mitra_widget.dart';
+import '/components/data_table_history_mitra/data_table_history_mitra_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'template_view_widget.dart' show TemplateViewWidget;
