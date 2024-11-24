@@ -12,11 +12,13 @@ class SurveiStruct extends BaseStruct {
     String? tipe,
     String? status,
     bool? isSampelPerusahaan,
+    bool? isDilaksanakan,
   })  : _kdSurvei = kdSurvei,
         _nama = nama,
         _tipe = tipe,
         _status = status,
-        _isSampelPerusahaan = isSampelPerusahaan;
+        _isSampelPerusahaan = isSampelPerusahaan,
+        _isDilaksanakan = isDilaksanakan;
 
   // "kd_survei" field.
   String? _kdSurvei;
@@ -53,12 +55,20 @@ class SurveiStruct extends BaseStruct {
 
   bool hasIsSampelPerusahaan() => _isSampelPerusahaan != null;
 
+  // "is_dilaksanakan" field.
+  bool? _isDilaksanakan;
+  bool get isDilaksanakan => _isDilaksanakan ?? false;
+  set isDilaksanakan(bool? val) => _isDilaksanakan = val;
+
+  bool hasIsDilaksanakan() => _isDilaksanakan != null;
+
   static SurveiStruct fromMap(Map<String, dynamic> data) => SurveiStruct(
         kdSurvei: data['kd_survei'] as String?,
         nama: data['nama'] as String?,
         tipe: data['tipe'] as String?,
         status: data['status'] as String?,
         isSampelPerusahaan: data['is_sampel_perusahaan'] as bool?,
+        isDilaksanakan: data['is_dilaksanakan'] as bool?,
       );
 
   static SurveiStruct? maybeFromMap(dynamic data) =>
@@ -70,6 +80,7 @@ class SurveiStruct extends BaseStruct {
         'tipe': _tipe,
         'status': _status,
         'is_sampel_perusahaan': _isSampelPerusahaan,
+        'is_dilaksanakan': _isDilaksanakan,
       }.withoutNulls;
 
   @override
@@ -92,6 +103,10 @@ class SurveiStruct extends BaseStruct {
         ),
         'is_sampel_perusahaan': serializeParam(
           _isSampelPerusahaan,
+          ParamType.bool,
+        ),
+        'is_dilaksanakan': serializeParam(
+          _isDilaksanakan,
           ParamType.bool,
         ),
       }.withoutNulls;
@@ -123,6 +138,11 @@ class SurveiStruct extends BaseStruct {
           ParamType.bool,
           false,
         ),
+        isDilaksanakan: deserializeParam(
+          data['is_dilaksanakan'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -135,12 +155,13 @@ class SurveiStruct extends BaseStruct {
         nama == other.nama &&
         tipe == other.tipe &&
         status == other.status &&
-        isSampelPerusahaan == other.isSampelPerusahaan;
+        isSampelPerusahaan == other.isSampelPerusahaan &&
+        isDilaksanakan == other.isDilaksanakan;
   }
 
   @override
   int get hashCode => const ListEquality()
-      .hash([kdSurvei, nama, tipe, status, isSampelPerusahaan]);
+      .hash([kdSurvei, nama, tipe, status, isSampelPerusahaan, isDilaksanakan]);
 }
 
 SurveiStruct createSurveiStruct({
@@ -149,6 +170,7 @@ SurveiStruct createSurveiStruct({
   String? tipe,
   String? status,
   bool? isSampelPerusahaan,
+  bool? isDilaksanakan,
 }) =>
     SurveiStruct(
       kdSurvei: kdSurvei,
@@ -156,4 +178,5 @@ SurveiStruct createSurveiStruct({
       tipe: tipe,
       status: status,
       isSampelPerusahaan: isSampelPerusahaan,
+      isDilaksanakan: isDilaksanakan,
     );

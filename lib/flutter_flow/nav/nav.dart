@@ -73,27 +73,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => RootPageContext.wrap(
-        appStateNotifier.loggedIn ? const ProfilePageWidget() : const LoginPageWidget(),
-        errorRoute: state.uri.toString(),
-      ),
+      errorBuilder: (context, state) =>
+          appStateNotifier.loggedIn ? const MitraWidget() : const LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => RootPageContext.wrap(
-            appStateNotifier.loggedIn ? const ProfilePageWidget() : const LoginPageWidget(),
-          ),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? const MitraWidget() : const LoginPageWidget(),
         ),
         FFRoute(
           name: 'HomePage',
           path: '/home',
           builder: (context, params) => const HomePageWidget(),
-        ),
-        FFRoute(
-          name: 'TemplateView',
-          path: '/template',
-          builder: (context, params) => const TemplateViewWidget(),
         ),
         FFRoute(
           name: 'LoginPage',
@@ -121,18 +113,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'InputSampelPage',
           path: '/inputSampel',
           requireAuth: true,
-          builder: (context, params) => InputSampelPageWidget(
-            dataResults: params.getParam<dynamic>(
-              'dataResults',
-              ParamType.JSON,
-              isList: true,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'RiwayatSampelPage',
-          path: '/riwayatSampelPage',
-          builder: (context, params) => const RiwayatSampelPageWidget(),
+          builder: (context, params) => const InputSampelPageWidget(),
         ),
         FFRoute(
           name: 'TestingPage',
@@ -142,9 +123,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         ),
         FFRoute(
           name: 'AssignUnitSampelPage',
-          path: '/assignUnitSampel',
+          path: '/setSurvei',
           requireAuth: true,
           builder: (context, params) => const AssignUnitSampelPageWidget(),
+        ),
+        FFRoute(
+          name: 'Mitra',
+          path: '/mitra',
+          requireAuth: true,
+          builder: (context, params) => const MitraWidget(),
+        ),
+        FFRoute(
+          name: 'history',
+          path: '/history',
+          builder: (context, params) => const HistoryWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

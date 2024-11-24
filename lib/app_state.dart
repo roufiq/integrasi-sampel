@@ -28,6 +28,10 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _isAnggotaRole = prefs.getBool('ff_isAnggotaRole') ?? _isAnggotaRole;
     });
+    _safeInit(() {
+      _perusahaanStatus =
+          prefs.getStringList('ff_perusahaanStatus') ?? _perusahaanStatus;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -63,6 +67,53 @@ class FFAppState extends ChangeNotifier {
   set isAnggotaRole(bool value) {
     _isAnggotaRole = value;
     prefs.setBool('ff_isAnggotaRole', value);
+  }
+
+  List<String> _perusahaanStatus = [
+    'Aktif',
+    'Tutup Sementara',
+    'Belum Berproduksi',
+    'Alih Usaha',
+    'Aktif Nonrespons',
+    'Tutup',
+    'Tidak Ditemukan',
+    'Aktif Pindah',
+    'Duplikat',
+    'Salah Kode Wilayah',
+    'Undefined'
+  ];
+  List<String> get perusahaanStatus => _perusahaanStatus;
+  set perusahaanStatus(List<String> value) {
+    _perusahaanStatus = value;
+    prefs.setStringList('ff_perusahaanStatus', value);
+  }
+
+  void addToPerusahaanStatus(String value) {
+    perusahaanStatus.add(value);
+    prefs.setStringList('ff_perusahaanStatus', _perusahaanStatus);
+  }
+
+  void removeFromPerusahaanStatus(String value) {
+    perusahaanStatus.remove(value);
+    prefs.setStringList('ff_perusahaanStatus', _perusahaanStatus);
+  }
+
+  void removeAtIndexFromPerusahaanStatus(int index) {
+    perusahaanStatus.removeAt(index);
+    prefs.setStringList('ff_perusahaanStatus', _perusahaanStatus);
+  }
+
+  void updatePerusahaanStatusAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    perusahaanStatus[index] = updateFn(_perusahaanStatus[index]);
+    prefs.setStringList('ff_perusahaanStatus', _perusahaanStatus);
+  }
+
+  void insertAtIndexInPerusahaanStatus(int index, String value) {
+    perusahaanStatus.insert(index, value);
+    prefs.setStringList('ff_perusahaanStatus', _perusahaanStatus);
   }
 }
 

@@ -248,14 +248,10 @@ dynamic deserializeParam<T>(
             return Pegawai1371Row(data);
           case Mitra1371Row:
             return Mitra1371Row(data);
-          case RoleUserViewRow:
-            return RoleUserViewRow(data);
           case PjKegRow:
             return PjKegRow(data);
           case PegawaiPosByidViewRow:
             return PegawaiPosByidViewRow(data);
-          case UserRoleListViewRow:
-            return UserRoleListViewRow(data);
           case UserRolesRow:
             return UserRolesRow(data);
           case GlosariumRow:
@@ -268,8 +264,6 @@ dynamic deserializeParam<T>(
             return KegSurveyPjKegViewRow(data);
           case DocumentsRow:
             return DocumentsRow(data);
-          case SampleUsahaHistoryRow:
-            return SampleUsahaHistoryRow(data);
           case KegSurveyRow:
             return KegSurveyRow(data);
           case RolesRow:

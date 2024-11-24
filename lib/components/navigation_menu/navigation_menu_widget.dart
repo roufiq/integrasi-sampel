@@ -619,7 +619,7 @@ class _NavigationMenuWidgetState extends State<NavigationMenuWidget>
                                     ? null
                                     : () async {
                                         context.goNamed(
-                                          'TemplateView',
+                                          'ProfilePage',
                                           extra: <String, dynamic>{
                                             kTransitionInfoKey: const TransitionInfo(
                                               hasTransition: true,

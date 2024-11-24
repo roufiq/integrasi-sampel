@@ -1,6 +1,6 @@
 import '/backend/supabase/supabase.dart';
-import '/components/side_navigation_web/side_navigation_web_widget.dart';
-import '/components/switch_sampel_perusahaan/switch_sampel_perusahaan_widget.dart';
+import '/components/side_nav/side_nav_widget.dart';
+import '/components/switch_is_perusahaan/switch_is_perusahaan_widget.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
@@ -25,34 +25,46 @@ class AssignUnitSampelPageModel
   // Stores action output result for [Backend Call - Query Rows] action in AssignUnitSampelPage widget.
   List<Profile1371Row>? profileRow;
   // Stores action output result for [Custom Action - loadData] action in AssignUnitSampelPage widget.
-  List<dynamic>? sampleList;
-  // Model for SideNavigationWeb component.
-  late SideNavigationWebModel sideNavigationWebModel;
+  List<dynamic>? surveiUsahaList;
+  // Model for SideNav component.
+  late SideNavModel sideNavModel;
   // State field(s) for ChoiceChips widget.
   FormFieldController<List<String>>? choiceChipsValueController;
   String? get choiceChipsValue =>
       choiceChipsValueController?.value?.firstOrNull;
   set choiceChipsValue(String? val) =>
       choiceChipsValueController?.value = val != null ? [val] : [];
+  // Stores action output result for [Custom Action - loadDataFiltered] action in ChoiceChips widget.
+  List<dynamic>? surveiListFiltered;
+  // Stores action output result for [Custom Action - loadData] action in ChoiceChips widget.
+  List<dynamic>? surveiListAll;
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
       FlutterFlowDataTableController<dynamic>();
-  // Models for switchSampelPerusahaan dynamic component.
-  late FlutterFlowDynamicModels<SwitchSampelPerusahaanModel>
-      switchSampelPerusahaanModels;
+  // Models for switchIsPerusahaan dynamic component.
+  late FlutterFlowDynamicModels<SwitchIsPerusahaanModel>
+      switchIsPerusahaanModels;
+  // Stores action output result for [Custom Action - loadDataFiltered] action in switchIsPerusahaan widget.
+  List<dynamic>? surveiListFilteredCall;
+  // Stores action output result for [Custom Action - loadDataFiltered] action in switchIsDilaksanakan widget.
+  List<dynamic>? surveiListFilteredCallCopy;
+  // Stores action output result for [Custom Action - loadData] action in switchIsDilaksanakan widget.
+  List<dynamic>? loadDataAll;
 
   @override
   void initState(BuildContext context) {
-    sideNavigationWebModel =
-        createModel(context, () => SideNavigationWebModel());
-    switchSampelPerusahaanModels =
-        FlutterFlowDynamicModels(() => SwitchSampelPerusahaanModel());
+    sideNavModel = createModel(context, () => SideNavModel());
+    switchIsPerusahaanModels =
+        FlutterFlowDynamicModels(() => SwitchIsPerusahaanModel());
   }
 
   @override
   void dispose() {
-    sideNavigationWebModel.dispose();
+    sideNavModel.dispose();
     paginatedDataTableController.dispose();
-    switchSampelPerusahaanModels.dispose();
+    switchIsPerusahaanModels.dispose();
   }
+
+  /// Action blocks.
+  Future test(BuildContext context) async {}
 }

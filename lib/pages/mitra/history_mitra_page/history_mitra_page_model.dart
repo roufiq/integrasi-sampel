@@ -1,7 +1,6 @@
 import '/backend/supabase/supabase.dart';
-import '/components/data_table_history_mitra/data_table_history_mitra_widget.dart';
 import '/components/navigation_menu/navigation_menu_widget.dart';
-import '/components/side_navigation_web/side_navigation_web_widget.dart';
+import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'history_mitra_page_widget.dart' show HistoryMitraPageWidget;
@@ -23,28 +22,27 @@ class HistoryMitraPageModel extends FlutterFlowModel<HistoryMitraPageWidget> {
           int index, Function(History1371ViewRow) updateFn) =>
       historyMitraList[index] = updateFn(historyMitraList[index]);
 
-  List<String> statusListDummy = [
-    'Belum Dikonfirmasi',
+  List<String> statusPenawaranList = [
     'Diterima',
-    'Ditolak',
-    'Ditolak (Mitra)',
+    'Penawaran Kerja Dibatalkan',
     'Mengundurkan Diri',
-    'Menunggu Konfirmasi Calon Mitra',
-    'Penawaran Kerja Dibatalkan'
+    'Menunggu Konfrimasi Calon Mitra',
+    'Belum Konfirmasi',
+    'Ditolak (Mitra)',
+    'Ditolak'
   ];
-  void addToStatusListDummy(String item) => statusListDummy.add(item);
-  void removeFromStatusListDummy(String item) => statusListDummy.remove(item);
-  void removeAtIndexFromStatusListDummy(int index) =>
-      statusListDummy.removeAt(index);
-  void insertAtIndexInStatusListDummy(int index, String item) =>
-      statusListDummy.insert(index, item);
-  void updateStatusListDummyAtIndex(int index, Function(String) updateFn) =>
-      statusListDummy[index] = updateFn(statusListDummy[index]);
+  void addToStatusPenawaranList(String item) => statusPenawaranList.add(item);
+  void removeFromStatusPenawaranList(String item) =>
+      statusPenawaranList.remove(item);
+  void removeAtIndexFromStatusPenawaranList(int index) =>
+      statusPenawaranList.removeAt(index);
+  void insertAtIndexInStatusPenawaranList(int index, String item) =>
+      statusPenawaranList.insert(index, item);
+  void updateStatusPenawaranListAtIndex(int index, Function(String) updateFn) =>
+      statusPenawaranList[index] = updateFn(statusPenawaranList[index]);
 
   ///  State fields for stateful widgets in this page.
 
-  // Model for SideNavigationWeb component.
-  late SideNavigationWebModel sideNavigationWebModel;
   // State field(s) for surveiDropdown widget.
   String? surveiDropdownValue;
   FormFieldController<String>? surveiDropdownValueController;
@@ -59,24 +57,20 @@ class HistoryMitraPageModel extends FlutterFlowModel<HistoryMitraPageWidget> {
   FormFieldController<List<String>>? statusDropdownValueController;
   // Stores action output result for [Backend Call - Query Rows] action in statusDropdown widget.
   List<History1371ViewRow>? historyMitra;
-  // Model for dataTableHistoryMitra component.
-  late DataTableHistoryMitraModel dataTableHistoryMitraModel;
+  // State field(s) for PaginatedDataTable widget.
+  final paginatedDataTableController =
+      FlutterFlowDataTableController<History1371ViewRow>();
   // Model for NavigationMenu component.
   late NavigationMenuModel navigationMenuModel;
 
   @override
   void initState(BuildContext context) {
-    sideNavigationWebModel =
-        createModel(context, () => SideNavigationWebModel());
-    dataTableHistoryMitraModel =
-        createModel(context, () => DataTableHistoryMitraModel());
     navigationMenuModel = createModel(context, () => NavigationMenuModel());
   }
 
   @override
   void dispose() {
-    sideNavigationWebModel.dispose();
-    dataTableHistoryMitraModel.dispose();
+    paginatedDataTableController.dispose();
     navigationMenuModel.dispose();
   }
 }

@@ -58,7 +58,7 @@ class _SwitchSampelPerusahaanWidgetState
             data: {
               'is_sampel_perusahaan': true,
             },
-            matchingRows: (rows) => rows.eq(
+            matchingRows: (rows) => rows.eqOrNull(
               'kd_survei',
               widget.survei?.kdSurvei,
             ),
@@ -68,7 +68,7 @@ class _SwitchSampelPerusahaanWidgetState
             data: {
               'is_sampel_perusahaan': false,
             },
-            matchingRows: (rows) => rows.eq(
+            matchingRows: (rows) => rows.eqOrNull(
               'kd_survei',
               widget.survei?.kdSurvei,
             ),

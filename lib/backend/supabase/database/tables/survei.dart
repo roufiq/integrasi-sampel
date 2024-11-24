@@ -32,4 +32,7 @@ class SurveiRow extends SupabaseDataRow {
   bool? get isSampelPerusahaan => getField<bool>('is_sampel_perusahaan');
   set isSampelPerusahaan(bool? value) =>
       setField<bool>('is_sampel_perusahaan', value);
+
+  bool get isDilaksanakan => getField<bool>('is_dilaksanakan')!;
+  set isDilaksanakan(bool value) => setField<bool>('is_dilaksanakan', value);
 }

@@ -1,9 +1,9 @@
 import '/auth/supabase_auth/auth_util.dart';
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'login_page_model.dart';
 export 'login_page_model.dart';
 
@@ -78,9 +78,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
-                                    fontFamily: 'Sora',
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineSmallFamily,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w800,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .headlineSmallFamily),
                                   ),
                             ),
                           ),
@@ -129,6 +134,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 .override(
                                                   fontFamily: 'Inter',
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts:
+                                                      GoogleFonts.asMap()
+                                                          .containsKey('Inter'),
                                                 ),
                                           ),
                                         ),
@@ -144,6 +152,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 .override(
                                                   fontFamily: 'Sora',
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts:
+                                                      GoogleFonts.asMap()
+                                                          .containsKey('Sora'),
                                                 ),
                                           ),
                                         ),
@@ -152,7 +163,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 16.0, 0.0, 0.0),
                                           child: TextFormField(
-                                            key: const ValueKey('roufiq@bps.go.id'),
                                             controller: _model
                                                 .emailAddressTextController,
                                             focusNode:
@@ -165,13 +175,22 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .titleLarge
                                                       .override(
-                                                        fontFamily: 'Sora',
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleLargeFamily,
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .secondaryText,
                                                         fontSize: 14.0,
                                                         letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleLargeFamily),
                                                       ),
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
@@ -218,6 +237,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 .override(
                                                   fontFamily: 'Sora',
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts:
+                                                      GoogleFonts.asMap()
+                                                          .containsKey('Sora'),
                                                 ),
                                             textAlign: TextAlign.start,
                                             validator: _model
@@ -230,7 +252,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 16.0, 0.0, 0.0),
                                           child: TextFormField(
-                                            key: const ValueKey('340056366'),
                                             controller:
                                                 _model.passwordTextController,
                                             focusNode: _model.passwordFocusNode,
@@ -243,10 +264,19 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Inter',
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
                                                       ),
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
@@ -311,6 +341,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 .override(
                                                   fontFamily: 'Sora',
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts:
+                                                      GoogleFonts.asMap()
+                                                          .containsKey('Sora'),
                                                 ),
                                             textAlign: TextAlign.start,
                                             validator: _model
@@ -347,32 +380,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 return;
                                               }
 
-                                              _model.profileRow =
-                                                  await Profile1371Table()
-                                                      .queryRows(
-                                                queryFn: (q) => q.eq(
-                                                  'id',
-                                                  currentUserUid,
-                                                ),
-                                              );
-                                              FFAppState().isAdminRole = _model
-                                                  .profileRow!.first.roles
-                                                  .contains('Admin');
-                                              FFAppState().isKetuaTimRole =
-                                                  _model.profileRow!.first.roles
-                                                      .contains('Ketua Tim');
-                                              FFAppState().isKepalaRole = _model
-                                                  .profileRow!.first.roles
-                                                  .contains('Kepala');
-                                              FFAppState().isAnggotaRole =
-                                                  _model.profileRow!.first.roles
-                                                      .contains('Anggota');
-                                              FFAppState().update(() {});
-
-                                              context.goNamedAuth('ProfilePage',
-                                                  context.mounted);
-
-                                              safeSetState(() {});
+                                              context.goNamedAuth(
+                                                  'Mitra', context.mounted);
                                             },
                                             text: 'Sign In',
                                             options: FFButtonOptions(
@@ -396,6 +405,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                                 .primaryText,
                                                         fontSize: 14.0,
                                                         letterSpacing: 0.0,
+                                                        useGoogleFonts:
+                                                            GoogleFonts.asMap()
+                                                                .containsKey(
+                                                                    'Inter'),
                                                       ),
                                               elevation: 3.0,
                                               borderSide: const BorderSide(
@@ -435,26 +448,45 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                     ),
                                                     TextSpan(
                                                       text: 'Register',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily: 'Inter',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
                                                     )
                                                   ],
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily: 'Inter',
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
                                                         letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
                                                       ),
                                                 ),
                                               ),

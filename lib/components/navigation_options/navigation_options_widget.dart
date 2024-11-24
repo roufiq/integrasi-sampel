@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'navigation_options_model.dart';
 export 'navigation_options_model.dart';
 
@@ -89,9 +90,13 @@ class _NavigationOptionsWidgetState extends State<NavigationOptionsWidget> {
                           style: FlutterFlowTheme.of(context)
                               .titleMedium
                               .override(
-                                fontFamily: 'Inter',
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleMediumFamily,
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .titleMediumFamily),
                               ),
                         ),
                         Text(
@@ -99,11 +104,16 @@ class _NavigationOptionsWidgetState extends State<NavigationOptionsWidget> {
                             widget.description,
                             'desc',
                           ),
-                          style:
-                              FlutterFlowTheme.of(context).labelSmall.override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0.0,
-                                  ),
+                          style: FlutterFlowTheme.of(context)
+                              .labelSmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelSmallFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .labelSmallFamily),
+                              ),
                         ),
                       ]
                           .divide(const SizedBox(height: 4.0))

@@ -6,6 +6,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:text_search/text_search.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
 
@@ -28,6 +30,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
     _model.textSearchTextController ??= TextEditingController();
     _model.textSearchFocusNode ??= FocusNode();
+
+    _model.textSearchTermsTextController ??= TextEditingController();
+    _model.textSearchTermsFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -52,10 +57,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           title: Text(
             'Home',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Sora',
+                  fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
                   color: Colors.white,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
+                  useGoogleFonts: GoogleFonts.asMap().containsKey(
+                      FlutterFlowTheme.of(context).headlineMediumFamily),
                 ),
           ),
           actions: const [],
@@ -86,11 +93,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 0.0),
-                          child: SizedBox(
-                            width: MediaQuery.sizeOf(context).width * 0.8,
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
                             child: TextFormField(
                               key: const ValueKey('1228'),
                               controller: _model.textSearchTextController,
@@ -102,16 +108,26 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelMediumFamily,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily),
                                     ),
                                 hintText:
                                     'Input ID SBR atau Nama Perusahaan...',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelMediumFamily,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily),
                                     ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: const BorderSide(
@@ -148,8 +164,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
                                   ),
                               cursorColor:
                                   FlutterFlowTheme.of(context).primaryText,
@@ -159,35 +180,186 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                           ),
                         ),
-                        FFButtonWidget(
-                          onPressed: () async {
-                            _model.stateSampleList = [];
-                            _model.sampleList = await actions.searchTable(
-                              _model.textSearchTextController.text,
-                            );
-                            _model.stateSampleList =
-                                _model.sampleList!.toList().cast<dynamic>();
-                            safeSetState(() {});
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              _model.stateSample = [];
+                              _model.sampleList = await actions.searchTable(
+                                _model.textSearchTextController.text,
+                              );
+                              _model.stateSample =
+                                  _model.sampleList!.toList().cast<dynamic>();
+                              safeSetState(() {});
 
-                            safeSetState(() {});
-                          },
-                          text: 'Search',
-                          options: FFButtonOptions(
-                            height: 40.0,
+                              safeSetState(() {});
+                            },
+                            text: 'Search',
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleSmallFamily),
+                                  ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Inter',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
+                            child: TextFormField(
+                              key: const ValueKey('1228'),
+                              controller: _model.textSearchTermsTextController,
+                              focusNode: _model.textSearchTermsFocusNode,
+                              autofocus: false,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelMediumFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily),
+                                    ),
+                                hintText:
+                                    'Input ID SBR atau Nama Perusahaan...',
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelMediumFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily),
+                                    ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(8.0),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context).error,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                filled: true,
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                              cursorColor:
+                                  FlutterFlowTheme.of(context).primaryText,
+                              validator: _model
+                                  .textSearchTermsTextControllerValidator
+                                  .asValidator(context),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              safeSetState(() {
+                                _model.simpleSearchResults = TextSearch(_model
+                                        .sampleList!
+                                        .map((e) => SampelStruct.maybeFromMap(e)
+                                            ?.namaUsaha)
+                                        .withoutNulls
+                                        .toList()
+                                        .map((str) => TextSearchItem.fromTerms(
+                                            str, [str]))
+                                        .toList())
+                                    .search(_model
+                                        .textSearchTermsTextController.text)
+                                    .map((r) => r.object)
+                                    .take(10)
+                                    .toList();
+                              });
+                            },
+                            text: 'Search',
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleSmallFamily),
+                                  ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           ),
                         ),
                       ],
@@ -196,7 +368,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   Expanded(
                     child: Builder(
                       builder: (context) {
-                        final dataTable = _model.stateSampleList.toList();
+                        final dataTable = _model.stateSample.toList();
 
                         return FlutterFlowDataTable<dynamic>(
                           controller: _model.paginatedDataTableController,
@@ -210,11 +382,41 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .labelLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: valueOrDefault<double>(
+                                          () {
+                                            if (MediaQuery.sizeOf(context)
+                                                    .width <
+                                                kBreakpointSmall) {
+                                              return 14.0;
+                                            } else if (MediaQuery.sizeOf(
+                                                        context)
+                                                    .width <
+                                                kBreakpointMedium) {
+                                              return 16.0;
+                                            } else if (MediaQuery.sizeOf(
+                                                        context)
+                                                    .width <
+                                                kBreakpointLarge) {
+                                              return 16.0;
+                                            } else {
+                                              return 12.0;
+                                            }
+                                          }(),
+                                          14.0,
+                                        ),
                                         letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .labelLargeFamily),
                                       ),
                                 ),
                               ),
+                              onSort: onSortChanged,
                             ),
                             DataColumn2(
                               label: DefaultTextStyle.merge(
@@ -224,8 +426,37 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .labelLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: valueOrDefault<double>(
+                                          () {
+                                            if (MediaQuery.sizeOf(context)
+                                                    .width <
+                                                kBreakpointSmall) {
+                                              return 14.0;
+                                            } else if (MediaQuery.sizeOf(
+                                                        context)
+                                                    .width <
+                                                kBreakpointMedium) {
+                                              return 16.0;
+                                            } else if (MediaQuery.sizeOf(
+                                                        context)
+                                                    .width <
+                                                kBreakpointLarge) {
+                                              return 16.0;
+                                            } else {
+                                              return 12.0;
+                                            }
+                                          }(),
+                                          14.0,
+                                        ),
                                         letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .labelLargeFamily),
                                       ),
                                 ),
                               ),
@@ -238,8 +469,37 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .labelLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: valueOrDefault<double>(
+                                          () {
+                                            if (MediaQuery.sizeOf(context)
+                                                    .width <
+                                                kBreakpointSmall) {
+                                              return 14.0;
+                                            } else if (MediaQuery.sizeOf(
+                                                        context)
+                                                    .width <
+                                                kBreakpointMedium) {
+                                              return 16.0;
+                                            } else if (MediaQuery.sizeOf(
+                                                        context)
+                                                    .width <
+                                                kBreakpointLarge) {
+                                              return 16.0;
+                                            } else {
+                                              return 12.0;
+                                            }
+                                          }(),
+                                          14.0,
+                                        ),
                                         letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .labelLargeFamily),
                                       ),
                                 ),
                               ),
@@ -252,8 +512,37 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .labelLargeFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: valueOrDefault<double>(
+                                          () {
+                                            if (MediaQuery.sizeOf(context)
+                                                    .width <
+                                                kBreakpointSmall) {
+                                              return 14.0;
+                                            } else if (MediaQuery.sizeOf(
+                                                        context)
+                                                    .width <
+                                                kBreakpointMedium) {
+                                              return 16.0;
+                                            } else if (MediaQuery.sizeOf(
+                                                        context)
+                                                    .width <
+                                                kBreakpointLarge) {
+                                              return 16.0;
+                                            } else {
+                                              return 12.0;
+                                            }
+                                          }(),
+                                          14.0,
+                                        ),
                                         letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .labelLargeFamily),
                                       ),
                                 ),
                               ),
@@ -280,21 +569,63 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      fontSize: () {
+                                        if (MediaQuery.sizeOf(context).width <
+                                            kBreakpointSmall) {
+                                          return 10.0;
+                                        } else if (MediaQuery.sizeOf(context)
+                                                .width <
+                                            kBreakpointMedium) {
+                                          return 11.0;
+                                        } else if (MediaQuery.sizeOf(context)
+                                                .width <
+                                            kBreakpointLarge) {
+                                          return 12.0;
+                                        } else {
+                                          return 14.0;
+                                        }
+                                      }(),
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
                                     ),
                               ),
                               Text(
                                 valueOrDefault<String>(
                                   SampelStruct.maybeFromMap(dataTableItem)
                                       ?.namaUsaha,
-                                  '-',
+                                  'NAMA USAHA, PT., CV, PABRIK, HOTEL',
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      fontSize: () {
+                                        if (MediaQuery.sizeOf(context).width <
+                                            kBreakpointSmall) {
+                                          return 10.0;
+                                        } else if (MediaQuery.sizeOf(context)
+                                                .width <
+                                            kBreakpointMedium) {
+                                          return 11.0;
+                                        } else if (MediaQuery.sizeOf(context)
+                                                .width <
+                                            kBreakpointLarge) {
+                                          return 12.0;
+                                        } else {
+                                          return 14.0;
+                                        }
+                                      }(),
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
                                     ),
                               ),
                               Text(
@@ -306,8 +637,29 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      fontSize: () {
+                                        if (MediaQuery.sizeOf(context).width <
+                                            kBreakpointSmall) {
+                                          return 10.0;
+                                        } else if (MediaQuery.sizeOf(context)
+                                                .width <
+                                            kBreakpointMedium) {
+                                          return 11.0;
+                                        } else if (MediaQuery.sizeOf(context)
+                                                .width <
+                                            kBreakpointLarge) {
+                                          return 12.0;
+                                        } else {
+                                          return 14.0;
+                                        }
+                                      }(),
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
                                     ),
                               ),
                               Text(
@@ -319,8 +671,29 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Inter',
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      fontSize: () {
+                                        if (MediaQuery.sizeOf(context).width <
+                                            kBreakpointSmall) {
+                                          return 10.0;
+                                        } else if (MediaQuery.sizeOf(context)
+                                                .width <
+                                            kBreakpointMedium) {
+                                          return 11.0;
+                                        } else if (MediaQuery.sizeOf(context)
+                                                .width <
+                                            kBreakpointLarge) {
+                                          return 12.0;
+                                        } else {
+                                          return 14.0;
+                                        }
+                                      }(),
                                       letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
                                     ),
                               ),
                             ].map((c) => DataCell(c)).toList(),
@@ -333,6 +706,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           dataRowHeight: 48.0,
                           columnSpacing: 20.0,
                           headingRowColor: FlutterFlowTheme.of(context).primary,
+                          sortIconColor: FlutterFlowTheme.of(context).primary,
                           borderRadius: BorderRadius.circular(8.0),
                           addHorizontalDivider: true,
                           addTopAndBottomDivider: false,
@@ -343,6 +717,45 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           addVerticalDivider: false,
                         );
                       },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: 100.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
+                      child: Builder(
+                        builder: (context) {
+                          final searchResp =
+                              _model.simpleSearchResults.toList();
+
+                          return Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: List.generate(searchResp.length,
+                                (searchRespIndex) {
+                              final searchRespItem =
+                                  searchResp[searchRespIndex];
+                              return Text(
+                                searchRespItem,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              );
+                            }),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ],

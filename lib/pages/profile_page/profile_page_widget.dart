@@ -1,7 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/navigation_menu/navigation_menu_widget.dart';
-import '/components/side_navigation_web/side_navigation_web_widget.dart';
+import '/components/side_nav/side_nav_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -10,6 +10,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'profile_page_model.dart';
 export 'profile_page_model.dart';
@@ -85,7 +86,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
 
     return FutureBuilder<List<Pegawai1371Row>>(
       future: Pegawai1371Table().querySingleRow(
-        queryFn: (q) => q.eq(
+        queryFn: (q) => q.eqOrNull(
           'email',
           currentUserEmail,
         ),
@@ -99,8 +100,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
               child: SizedBox(
                 width: 35.0,
                 height: 35.0,
-                child: SpinKitThreeBounce(
-                  color: FlutterFlowTheme.of(context).accent2,
+                child: SpinKitPulse(
+                  color: FlutterFlowTheme.of(context).secondary,
                   size: 35.0,
                 ),
               ),
@@ -128,6 +129,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                           color: Colors.white,
                           fontSize: 22.0,
                           letterSpacing: 0.0,
+                          useGoogleFonts:
+                              GoogleFonts.asMap().containsKey('Sora'),
                         ),
                   ),
                   actions: const [],
@@ -141,16 +144,18 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if (responsiveVisibility(
                       context: context,
                       phone: false,
                       tablet: false,
+                      tabletLandscape: false,
                     ))
                       wrapWithModel(
-                        model: _model.sideNavigationWebModel,
+                        model: _model.sideNavModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: const SideNavigationWebWidget(),
+                        child: const SideNavWidget(),
                       ),
                     Expanded(
                       child: Align(
@@ -246,7 +251,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                                   milliseconds:
                                                                       500),
                                                           imageUrl:
-                                                              'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+                                                              profilePagePegawai1371Row!
+                                                                  .avatar!,
                                                           width: 44.0,
                                                           height: 44.0,
                                                           fit: BoxFit.cover,
@@ -274,19 +280,23 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             valueOrDefault<
                                                                 String>(
                                                               profilePagePegawai1371Row
-                                                                  ?.namagelar,
+                                                                  .namagelar,
                                                               'Nama Pegawai Kota Padang, SST, M.Si',
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .headlineSmall
+                                                                .bodyLarge
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Sora',
-                                                                  fontSize:
-                                                                      22.0,
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLargeFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyLargeFamily),
                                                                 ),
                                                           ),
                                                           Padding(
@@ -301,19 +311,22 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                               valueOrDefault<
                                                                   String>(
                                                                 profilePagePegawai1371Row
-                                                                    ?.email,
+                                                                    .email,
                                                                 'email_panjang_sekali_pppk@bps.go.id',
                                                               ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .labelMedium
+                                                                  .bodyLarge
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Inter',
-                                                                    fontSize:
-                                                                        16.0,
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyLargeFamily,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).bodyLargeFamily),
                                                                   ),
                                                             ),
                                                           ),
@@ -324,11 +337,124 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                 ],
                                               ),
                                             ),
-                                            SingleChildScrollView(
-                                              scrollDirection: Axis.horizontal,
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 8.0),
+                                                  child: Container(
+                                                    height: 32.0,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .success,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    child: Visibility(
+                                                      visible: FFAppState()
+                                                              .isKepalaRole ==
+                                                          true,
+                                                      child: Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Kepala',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodySmallFamily),
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 8.0),
+                                                  child: Container(
+                                                    height: 32.0,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .warning,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    child: Visibility(
+                                                      visible: FFAppState()
+                                                              .isKetuaTimRole ==
+                                                          true,
+                                                      child: Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Ketua Tim',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodySmallFamily),
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                if (FFAppState()
+                                                        .isAnggotaRole ==
+                                                    true)
                                                   Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
@@ -340,51 +466,47 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .success,
+                                                                .tertiary,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(8.0),
                                                       ),
-                                                      child: Visibility(
-                                                        visible: FFAppState()
-                                                                .isKepalaRole ==
-                                                            true,
-                                                        child: Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  0.0, 0.0),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        8.0,
-                                                                        0.0,
-                                                                        8.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              'Kepala',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Plus Jakarta Sans',
-                                                                    color: const Color(
-                                                                        0xFF15161E),
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                            ),
+                                                      child: Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Anggota',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodySmallFamily),
+                                                                ),
                                                           ),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
+                                                if (FFAppState().isAdminRole ==
+                                                    true)
                                                   Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
@@ -396,175 +518,51 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .warning,
+                                                                .error,
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(8.0),
                                                       ),
-                                                      child: Visibility(
-                                                        visible: FFAppState()
-                                                                .isKetuaTimRole ==
-                                                            true,
-                                                        child: Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  0.0, 0.0),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        8.0,
-                                                                        0.0,
-                                                                        8.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              'Ketua Tim',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Plus Jakarta Sans',
-                                                                    color: const Color(
-                                                                        0xFF15161E),
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                            ),
+                                                      child: Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Admin',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodySmallFamily),
+                                                                ),
                                                           ),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                  if (FFAppState()
-                                                          .isAnggotaRole ==
-                                                      true)
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  8.0),
-                                                      child: Container(
-                                                        height: 32.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .tertiary,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        child: Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  0.0, 0.0),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        8.0,
-                                                                        0.0,
-                                                                        8.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              'Anggota',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Plus Jakarta Sans',
-                                                                    color: const Color(
-                                                                        0xFF15161E),
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  if (FFAppState()
-                                                          .isAdminRole ==
-                                                      true)
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  8.0),
-                                                      child: Container(
-                                                        height: 32.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        child: Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  0.0, 0.0),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        8.0,
-                                                                        0.0,
-                                                                        8.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              'Admin',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Plus Jakarta Sans',
-                                                                    color: const Color(
-                                                                        0xFF15161E),
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                ]
-                                                    .divide(
-                                                        const SizedBox(width: 8.0))
-                                                    .addToStart(
-                                                        const SizedBox(width: 16.0))
-                                                    .addToEnd(
-                                                        const SizedBox(width: 16.0)),
-                                              ),
+                                              ]
+                                                  .divide(const SizedBox(width: 8.0))
+                                                  .addToStart(
+                                                      const SizedBox(width: 16.0))
+                                                  .addToEnd(
+                                                      const SizedBox(width: 16.0)),
                                             ).animateOnPageLoad(animationsMap[
                                                 'rowOnPageLoadAnimation']!),
                                             Divider(
@@ -602,12 +600,18 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             'NIP',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyLarge
+                                                                .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                           ),
                                                         ),
@@ -617,19 +621,25 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             valueOrDefault<
                                                                 String>(
                                                               profilePagePegawai1371Row
-                                                                  ?.nipbaru,
+                                                                  .nipbaru,
                                                               '-',
                                                             ),
                                                             textAlign:
                                                                 TextAlign.start,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyLarge
+                                                                .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                           ),
                                                         ),
@@ -658,12 +668,18 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             'NIP Lama',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyLarge
+                                                                .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                           ),
                                                         ),
@@ -673,17 +689,23 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             valueOrDefault<
                                                                 String>(
                                                               profilePagePegawai1371Row
-                                                                  ?.niplama,
+                                                                  .niplama,
                                                               '-',
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyLarge
+                                                                .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                           ),
                                                         ),
@@ -712,12 +734,18 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             'Golongan',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyLarge
+                                                                .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                           ),
                                                         ),
@@ -727,17 +755,23 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             valueOrDefault<
                                                                 String>(
                                                               profilePagePegawai1371Row
-                                                                  ?.nmgol,
+                                                                  .nmgol,
                                                               '-',
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyLarge
+                                                                .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                           ),
                                                         ),
@@ -766,12 +800,18 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             'Status',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyLarge
+                                                                .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                           ),
                                                         ),
@@ -781,17 +821,23 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             valueOrDefault<
                                                                 String>(
                                                               profilePagePegawai1371Row
-                                                                  ?.nmstpeg,
+                                                                  .nmstpeg,
                                                               '-',
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyLarge
+                                                                .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                           ),
                                                         ),
@@ -820,12 +866,18 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             'Jabatan',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyLarge
+                                                                .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                           ),
                                                         ),
@@ -835,17 +887,23 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             valueOrDefault<
                                                                 String>(
                                                               profilePagePegawai1371Row
-                                                                  ?.nmjab,
+                                                                  .nmjab,
                                                               '-',
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyLarge
+                                                                .bodyMedium
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                           ),
                                                         ),
@@ -894,8 +952,17 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                           context)
                                                       .labelMedium
                                                       .override(
-                                                        fontFamily: 'Inter',
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMediumFamily,
                                                         letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily),
                                                       ),
                                                 ),
                                               ),
@@ -946,10 +1013,16 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                                     .of(context)
                                                                 .bodyLarge
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLargeFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyLargeFamily),
                                                                 ),
                                                           ),
                                                           Expanded(
@@ -1020,13 +1093,19 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                                     .of(context)
                                                                 .bodyLarge
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLargeFamily,
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyLargeFamily),
                                                                 ),
                                                           ),
                                                           Expanded(
@@ -1080,8 +1159,17 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily: 'Inter',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
                                                         ),
                                                   ),
                                                 ),
@@ -1133,13 +1221,19 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                                     .of(context)
                                                                 .bodyLarge
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLargeFamily,
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyLargeFamily),
                                                                 ),
                                                           ),
                                                           Expanded(
@@ -1210,13 +1304,19 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                                     .of(context)
                                                                 .bodyLarge
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLargeFamily,
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyLargeFamily),
                                                                 ),
                                                           ),
                                                           Expanded(
@@ -1287,10 +1387,16 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                                     .of(context)
                                                                 .bodyLarge
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Inter',
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLargeFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyLargeFamily),
                                                                 ),
                                                           ),
                                                           Expanded(
@@ -1439,9 +1545,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
-                                                                              fontFamily: 'Inter',
+                                                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                               color: Theme.of(context).brightness == Brightness.light ? FlutterFlowTheme.of(context).primaryText : FlutterFlowTheme.of(context).secondaryText,
                                                                               letterSpacing: 0.0,
+                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                             ),
                                                                       ),
                                                                     ),
@@ -1531,9 +1638,10 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
-                                                                              fontFamily: 'Inter',
+                                                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                               color: Theme.of(context).brightness == Brightness.dark ? FlutterFlowTheme.of(context).primaryText : FlutterFlowTheme.of(context).secondaryText,
                                                                               letterSpacing: 0.0,
+                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                             ),
                                                                       ),
                                                                     ),
@@ -1669,6 +1777,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                                               0.0,
                                                                           fontWeight:
                                                                               FontWeight.w500,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey('Outfit'),
                                                                         ),
                                                                   ),
                                                                 ),
@@ -1772,6 +1882,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                                               0.0,
                                                                           fontWeight:
                                                                               FontWeight.w500,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey('Outfit'),
                                                                         ),
                                                                   ),
                                                                 ),
@@ -1826,13 +1938,22 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                             .of(context)
                                                         .titleSmall
                                                         .override(
-                                                          fontFamily: 'Inter',
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily),
                                                         ),
                                                     elevation: 0.0,
                                                     borderSide: BorderSide(

@@ -59,3 +59,11 @@ int stringOccurrences(
 ) {
   return mainString.split(subString).length - 1;
 }
+
+int indexOfList(
+  List<String> statusList,
+  String selectedValue,
+) {
+  int index = statusList.indexWhere((item) => item.contains(selectedValue));
+  return index;
+}
